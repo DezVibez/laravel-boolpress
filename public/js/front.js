@@ -2400,7 +2400,12 @@ var render = function render() {
     staticClass: "card-header my-3 d-flex justify-content-between"
   }, [_c("h5", {
     staticClass: "card-title"
-  }, [_vm._v(_vm._s(_vm.post.title))]), _vm._v(" "), _c("button", [_vm._v("Vedi")])]), _vm._v(" "), _c("h6", {
+  }, [_vm._v(_vm._s(_vm.post.title))]), _vm._v(" "), _c("router-link", {
+    staticClass: "btn btn-primary",
+    attrs: {
+      to: ""
+    }
+  }, [_vm._v("Vedi")])], 1), _vm._v(" "), _c("h6", {
     staticClass: "card-subtitle"
   }, [_vm._v("Pubblicato il: " + _vm._s(_vm.publishedAt))]), _vm._v(" "), _c("p", {
     staticClass: "card-text"

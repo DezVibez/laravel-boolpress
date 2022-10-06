@@ -54675,7 +54675,7 @@ var routes = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/emanueledezotti/laravel-api/resources/js/front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! /Users/emanueledezotti/laravel-boolpress/resources/js/front.js */"./resources/js/front.js");
 
 
 /***/ })

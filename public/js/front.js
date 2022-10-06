@@ -2032,7 +2032,28 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "PostDetailPage"
+  name: "PostDetailPage",
+  data: function data() {
+    return {
+      post: null
+    };
+  },
+  methods: {
+    fetchPosts: function fetchPosts() {
+      var _this = this;
+
+      axios.get("http://localhost:8000/api/posts/1").then(function (res) {
+        _this.post = res.data;
+      })["catch"](function (err) {
+        console.error(err);
+      }).then(function () {
+        console.log("Chiamata Terminata");
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.fetchPosts();
+  }
 });
 
 /***/ }),
@@ -2411,7 +2432,7 @@ var render = function render() {
     attrs: {
       id: "post-detail-page"
     }
-  }, [_vm._v("\n  Dettaglio post\n")]);
+  }, [_vm._v("Dettaglio post")]);
 };
 
 var staticRenderFns = [];

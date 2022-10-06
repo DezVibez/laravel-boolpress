@@ -2031,8 +2031,13 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _posts_PostCard_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../posts/PostCard.vue */ "./resources/js/components/posts/PostCard.vue");
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "PostDetailPage",
+  components: {
+    PostCard: _posts_PostCard_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
   data: function data() {
     return {
       post: null
@@ -2042,7 +2047,7 @@ __webpack_require__.r(__webpack_exports__);
     fetchPosts: function fetchPosts() {
       var _this = this;
 
-      axios.get("http://localhost:8000/api/posts/1").then(function (res) {
+      axios.get("http://localhost:8000/api/posts/" + this.$route.params.id).then(function (res) {
         _this.post = res.data;
         console.log(res.data);
       })["catch"](function (err) {
@@ -2433,7 +2438,11 @@ var render = function render() {
     attrs: {
       id: "post-detail-page"
     }
-  }, [_vm._v("Dettaglio post")]);
+  }, [_vm._v("Dettaglio post\n\n  "), _c("PostCard", {
+    attrs: {
+      post: _vm.post
+    }
+  })], 1);
 };
 
 var staticRenderFns = [];

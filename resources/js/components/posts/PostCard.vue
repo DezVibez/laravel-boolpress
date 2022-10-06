@@ -3,7 +3,7 @@
     <div class="card-body">
       <div class="card-header my-3 d-flex justify-content-between">
         <h5 class="card-title">{{ post.title }}</h5>
-        <router-link class="btn btn-primary" to="">Vedi</router-link>
+        <router-link class="btn btn-primary" :to="`/posts/${post.id}`">Vedi</router-link>
       </div>
       <h6 class="card-subtitle">Pubblicato il: {{ publishedAt }}</h6>
       <p class="card-text">

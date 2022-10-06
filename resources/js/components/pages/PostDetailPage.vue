@@ -17,6 +17,7 @@ export default {
         .get("http://localhost:8000/api/posts/1")
         .then(res => {
           this.post = res.data;
+          console.log(res.data);
         })
         .catch(err => {
           console.error(err);

@@ -41,7 +41,7 @@ class PostController extends Controller
         $post = Post::with(['category','tags'])->find($id);
 
         if(!$post) return response('Not Found', 404);
-        else return response()->json('post');
+        else return response()->json($post);
     }
 
     /**

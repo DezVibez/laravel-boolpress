@@ -48,8 +48,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
-
+        
         $request->validate(
             [
             'title' => 'required|string|unique:posts|min:5|max:50',
@@ -81,7 +80,7 @@ class PostController extends Controller
             $image_url = Storage::put('post_images', $data['image']);
             $post->image = $image_url;
         }
-        
+
         $post->save();
 
 
@@ -116,9 +115,11 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        $categories = Category::all();
+        $tags = Tag::select('id','label')->get();
+        $categories = Category::select('id','label')->get();
         $prev_tags = $post->tags->pluck('id')->toArray();
-        return view('admin.posts.edit', compact('post', 'categories', 'prev_tags'));
+        
+        return view('admin.posts.edit', compact('post', 'categories', 'tags', 'prev_tags'));
     }
 
     /**

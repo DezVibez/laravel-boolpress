@@ -37,7 +37,11 @@
             </div>
             
             <input type="file" class=""
-             id="image" name="image">
+                id="image" name="image">
+
+            <img class="float-left mr-2 img-fluid w-25" 
+            src="{{ $post->image ? asset('storage/'. $post->image) : 'https://wopart.eu/wp-content/uploads/2021/10/placeholder-7.png' }}" 
+            alt="{{$post->image ? $post->title : 'placeholder' }}">
         </div>
 
         <div class="form-group">
@@ -52,17 +56,16 @@
         </div>
 
         <hr>
-        @if(count($tags))
+        @if (count($tags))
             <h4>Tags</h4>
             @foreach($tags as $tag)
-            <div class="form-group form-check">
+            <div class="form-check form-check-inline">
                 <input type="checkbox" 
                     class="form-check-input" 
                     id=" tag-{{ $tag->label }}" 
                     name="tags[]" 
                     value="{{ $tag->id }}"
-                    @if( in_array( $tag->id, old('tags', $prev_tags) )) checked @endif
-                    > 
+                    @if (in_array($tag->id, old('tags', $prev_tags))) checked @endif> 
                 <label class="form-check-label" for=" tag-{{ $tag->label }}">{{ $tag->label }}</label>
             </div>
             @endforeach

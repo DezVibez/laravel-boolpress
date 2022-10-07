@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 
 class PostController extends Controller
@@ -47,11 +48,13 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request->all());
+
         $request->validate(
             [
             'title' => 'required|string|unique:posts|min:5|max:50',
             'content' => 'required|string',
-            'image' => 'nullable|url',
+            'image' => 'nullable|image|mimes:jpeg,jpg,png',
             'category_id' => 'nullable|exists:categories,id',
             'tags' => 'nullable|exists:tags,id'
             ],
@@ -62,8 +65,9 @@ class PostController extends Controller
                 'title.min'=> 'Il titolo deve avere almeno :min caratteri',
                 'title.max'=> 'Il titolo deve avere almeno :max caratteri',
                 'title.unique'=> "Esiste già un titolo chiamato $request->title",
-                'image.url'=> "URL dell'immagine non valido",
-                'tags.exists' => 'ID del tag non valido'
+                'tags.exists' => 'ID del tag non valido',
+                'image.image' => 'il file caricato non è di tipo immagine',
+                'image.mimes' => "le estensioni consentite sono jpeg,jpg,png"
             ]);
 
         $data = $request->all();
@@ -73,11 +77,17 @@ class PostController extends Controller
         $post->fill($data);
         $post->slug = Str::slug($post->title, '-');
         
+        if(array_key_exists('image', $data)){
+            $image_url = Storage::put('post_images', $data['image']);
+            $post->image = $image_url;
+        }
+        
         $post->save();
 
-            if(array_key_exists('tags', $data)){
-                $post->tags()->attach($data['tags']);
-            }
+
+        if(array_key_exists('tags', $data)){
+            $post->tags()->attach($data['tags']);
+        }
 
 
 

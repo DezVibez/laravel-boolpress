@@ -22,7 +22,7 @@ class PostSeeder extends Seeder
             $new_post->user_id = 1;
             $new_post->slug = Str::slug($new_post->title, '-');
             $new_post->content = $faker->paragraphs(2, true);
-            $new_post->image = $faker->imageUrl(200, 200);
+            //$new_post->image = $faker->imageUrl(200, 200);
 
             $new_post->save();
         }

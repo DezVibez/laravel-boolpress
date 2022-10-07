@@ -11,10 +11,10 @@
 <div class="container">
 
     @if($post->exists)
-    <form action="{{ route('admin.posts.update', $post) }}" method="POST">
+    <form action="{{ route('admin.posts.update', $post) }}" enctype="multipart/form-data" method="POST">
         @method('PUT')
     @else
-    <form action="{{ route('admin.posts.store') }}" method="POST">
+    <form action="{{ route('admin.posts.store') }}" enctype="multipart/form-data" method="POST">
     @endif
         @csrf
         
@@ -32,9 +32,12 @@
         </div>
 
         <div class="form-group">
+            <div>
             <label for="image">Immagine</label>
-            <input type="url" class="form-control"
-             id="image" value="{{ old('image', $post->image) }}" name="image">
+            </div>
+            
+            <input type="file" class=""
+             id="image" name="image">
         </div>
 
         <div class="form-group">

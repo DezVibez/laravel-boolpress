@@ -10,7 +10,7 @@ imageField.addEventListener('input', () => {
         let reader = new FileReader();
 
         reader.readAsDataURL(imageField.files[0]);
-        reader.onload = (event) => {
+        reader.onload = event => {
             preview.src = event.target.result;
         }
 

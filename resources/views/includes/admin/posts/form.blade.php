@@ -32,14 +32,19 @@
         </div>
 
         <div class="form-group">
+
             <div>
             <label for="image">Immagine</label>
             </div>
             
-            <input type="file" class=""
-                id="image" name="image">
-
-            <img class="float-left mr-2 img-fluid w-25" 
+            <input type="file" class="@error('image') is-invalid @enderror" id="image-field"
+                name="image">
+            @error('image')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
+            <img class="float-left mr-2 img-fluid w-25"  id="preview"
             src="{{ $post->image ? asset('storage/'. $post->image) : 'https://wopart.eu/wp-content/uploads/2021/10/placeholder-7.png' }}" 
             alt="{{$post->image ? $post->title : 'placeholder' }}">
         </div>

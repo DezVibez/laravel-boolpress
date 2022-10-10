@@ -54752,18 +54752,44 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _router_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./router.js */ "./resources/js/router.js");
-/* harmony import */ var _components_App_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/App.vue */ "./resources/js/components/App.vue");
+/* harmony import */ var _image_preview_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./image_preview.js */ "./resources/js/image_preview.js");
+/* harmony import */ var _image_preview_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_image_preview_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _components_App_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/App.vue */ "./resources/js/components/App.vue");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 
 
+
 var root = new Vue({
   el: '#root',
   render: function render(h) {
-    return h(_components_App_vue__WEBPACK_IMPORTED_MODULE_1__["default"]);
+    return h(_components_App_vue__WEBPACK_IMPORTED_MODULE_2__["default"]);
   },
   router: _router_js__WEBPACK_IMPORTED_MODULE_0__["default"]
+});
+
+/***/ }),
+
+/***/ "./resources/js/image_preview.js":
+/*!***************************************!*\
+  !*** ./resources/js/image_preview.js ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var placeholder = 'https://wopart.eu/wp-content/uploads/2021/10/placeholder-7.png';
+var preview = document.getElementById('preview');
+var imageField = document.getElementById('image-field');
+imageField.addEventListener('input', function () {
+  alert('got it');
+
+  if (imageField.files && imageField.files[0]) {
+    var reader = new FileReader();
+    reader.readAsDataURL(imageField.files[0]);
+  } else preview.src = placeholder;
+
+  preview.src = imageField.value || placeholder;
 });
 
 /***/ }),

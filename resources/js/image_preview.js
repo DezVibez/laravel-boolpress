@@ -4,14 +4,16 @@ const imageField = document.getElementById('image-field');
 
 imageField.addEventListener('input', () => {
 
-    alert('got it');
+    
 
     if(imageField.files && imageField.files[0]) {
         let reader = new FileReader();
 
         reader.readAsDataURL(imageField.files[0]);
+        reader.onload = (event) => {
+            preview.src = event.target.result;
+        }
+
+
     } else preview.src = placeholder;
-
-
-    preview.src = imageField.value || placeholder;
 });
